@@ -1,0 +1,105 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+<style lang="scss" src="./styles/weui.scss"></style>
+<style lang="scss" src="./styles/icons.scss"></style>
+<style lang="scss" src="./styles/base.scss"></style>
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/location',
+      'pages/index',
+      'pages/test_change_compont',
+      'pages/locationChoose',
+      'pages/search'
+    ],
+    'window': {
+      'backgroundTextStyle': 'dark',
+      'backgroundColor': '#F5F5F5',
+      'navigationBarBackgroundColor': '#0997DC'
+    },
+    'tabBar': {
+      'color': '#666666',
+      'selectedColor': '#0997DC',
+      'borderStyle': 'white',
+      'backgroundColor': '#FAFAFA',
+      'list': [
+        {
+          'iconPath': 'images/home.png',
+          'selectedIconPath': 'images/home-active.png',
+          'pagePath': 'pages/location',
+          'text': '定位'
+        },
+        {
+          'iconPath': 'images/home.png',
+          'selectedIconPath': 'images/home-active.png',
+          'pagePath': 'pages/index',
+          'text': '首页'
+        },
+        {
+          'iconPath': 'images/order.png',
+          'selectedIconPath': 'images/order-active.png',
+          'pagePath': 'pages/test_change_compont',
+          'text': '测试1'
+        }
+      ]
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+    // this.use('promisify');
+  }
+
+  onLaunch() {
+    this.testAsync()
+  }
+  sleep (s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+  async testAsync () {
+    const data = await this.sleep(3)//非异步操作-等待
+    console.log(data)
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    wepy.getUserInfo({
+      success (res) {
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+      }
+    })
+    console.log('app.wpy-77:我走到这里了！')
+  }
+}
+</script>

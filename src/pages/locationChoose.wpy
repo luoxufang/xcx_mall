@@ -1,0 +1,28 @@
+<template>
+  <view class="container">
+
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class aaaaa extends wepy.page {
+    config = {
+      navigationBarTitleText: '选择地址',
+    }
+    data = {
+      init: false,
+      location: null,
+      mode: 'create',
+      address: {}
+    };
+
+    methods = {
+      location() {
+        this.$navigate('search');
+      },
+    }
+}
+</script>
+<style lang="less">
+
+</style>

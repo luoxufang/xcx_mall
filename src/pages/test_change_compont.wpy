@@ -1,0 +1,21 @@
+<template>
+    <child @childFn.user="parentFn"></child>
+</template>
+
+<script>
+    import wepy from 'wepy'
+    import Child from '../components/test_child'
+
+    export default class Index extends wepy.page {
+        components = {
+            child: Child
+        }
+
+        methods = {
+            parentFn (num, evt) {
+                console.log('parent received emit event, number is: ' + num)
+                console.log(evt)
+            }
+        }
+    }
+</script>
