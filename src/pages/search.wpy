@@ -60,18 +60,18 @@
     };
     
     async locate() {
+      let self = this;
       // 当前位置
       const {latitude, longitude} = await wepy.getLocation({type: 'gcj02'});
-      this.latitude = latitude;
-      this.longitude = longitude;
-      console.log(latitude);
-      console.log(longitude);
+      
+      self.latitude = latitude;
+      self.longitude = longitude;
       // 逆向解析
       const reverse = await map.reverse(latitude, longitude);
-      this.currentLocation = reverse.current;
-      this.currentAddress = reverse.current.display;
-      this.nearbyLocations = reverse.nearby;
-      this.$apply();
+      self.currentLocation = reverse.current;
+      self.currentAddress = reverse.current.display;
+      self.nearbyLocations = reverse.nearby;
+      self.$apply();
     }
     methods = {
       /**
