@@ -97,7 +97,7 @@
           </view>
         </view>
         <view class="is_tab class3" @tap="gotoMypage()">
-          <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/order.png" />
+          <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/user.png" />
           <view>我的</view>
         </view>
       </view>

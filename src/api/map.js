@@ -1,14 +1,14 @@
 
 const QQMap = require('../utils/QQMap.js');
+// 引入SDK核心类
+const QQMapWX = require('../api/qqmap-wx-jssdk.js');
 
 /**
  * QQ地图解析类  TODO 需要重构到服务端
  */
 export default class map {
   static API_KEY = '4RDBZ-DOEK3-XXV3U-Y4GUX-DYJYZ-ZTFJ6';
-
-  static API_REGION = '福州市';
-
+  static API_REGION = '深圳市';
   /**
    * QQ地图API
    */
@@ -43,17 +43,58 @@ export default class map {
    * 地址逆解析
    */
   static reverse (latitude, longitude) {
-    return new Promise((resolve, reject) => {
-      this.map.reverseGeocoder({
+    // return new Promise((resolve, reject) => {
+    //   this.map.reverseGeocoder({
+    //     location: {
+    //       latitude: latitude,
+    //       longitude: longitude
+    //     },
+    //     get_poi: 1,
+    //     poi_options: 'policy=2',
+    //     success: ({result}) => {
+    //       const current = {};
+    //       // 当前地址文本
+    //       current.display = result.formatted_addresses.recommend;
+    //       current.province = result.ad_info.province;
+    //       current.city = result.ad_info.city;
+    //       current.country = result.ad_info.district;
+    //       current.town = result.address_reference.town.title;
+    //       current.address = result.address;
+    //       current.detail = result.address + current.display;
+    //       current.latitude = result.location.lat;
+    //       current.longitude = result.location.lng;
+    //       // 附近的POI
+    //       const nearby = [];
+    //       const pois = result.pois;
+    //       pois.forEach(poi => {
+    //         const address = this.processPOI(poi);
+    //         address.town = current.town;
+    //         nearby.push(address);
+    //       });
+    //       resolve({current, nearby});
+    //     },
+    //     fail: function (res) {
+    //       reject(res);
+    //     }
+    //   });
+    // });
+
+    let self = this;
+    // 实例化API核心类
+    let demo = new QQMapWX({
+        key: '4RDBZ-DOEK3-XXV3U-Y4GUX-DYJYZ-ZTFJ6' // 必填
+    });
+    // 调用接口
+    await new Promise((resolve, reject) => {
+      demo.reverseGeocoder({
         location: {
           latitude: latitude,
           longitude: longitude
         },
         get_poi: 1,
         poi_options: 'policy=2',
-        success: ({result}) => {
+        success:({result}) => {
           const current = {};
-          console.log('11111')
           // 当前地址文本
           current.display = result.formatted_addresses.recommend;
           current.province = result.ad_info.province;
@@ -68,18 +109,23 @@ export default class map {
           const nearby = [];
           const pois = result.pois;
           pois.forEach(poi => {
-            const address = this.processPOI(poi);
+            const address = self.processPOI(poi);
             address.town = current.town;
             nearby.push(address);
           });
           resolve({current, nearby});
         },
-        fail: function (res) {
-          reject(res);
+        fail: function(res) {
+          console.log(res);
+        },
+        complete: function(res) {
+          console.log(res);
         }
       });
     });
+
   }
+
 
   /**
    * 处理POI数据

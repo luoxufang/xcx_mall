@@ -6,6 +6,10 @@
       <open-data type="userNickName" style="font-size:30rpx;color:#666;"></open-data>
     </view>
     <child @childFn.user="parentFn"></child>
+    <!--订单栏-->
+    <!-- <block wx:if="{{item.type == 'ORDER_BAR'}}">
+      <OrderBar :param.sync="item" />
+    </block> -->
     <!-- 底部tab栏 -->
     <view class="bottom_tab_view" @tap="gotoHome()">
       <view class="bottom_tab">
@@ -20,7 +24,7 @@
           </view>
         </view>
         <view class="is_tab class3">
-          <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/order-active.png" />
+          <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/user-active.png" />
           <view style="color: #0997DC;">我的</view>
         </view>
       </view>
