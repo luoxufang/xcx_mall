@@ -60,38 +60,31 @@
     };
     
     async locate() {
-      let self = this;
+      // let self = this;
       // 当前位置
-      // let res111 = await wepy.getLocation({type: 'gcj02'});
-      // console.log(res111);
-      wepy.getLocation({
-        type: 'gcj02'
-        ,
-        success: function(res) {
-          let latitude = res.latitude;
-          let longitude = res.longitude;
-          self.latitude = latitude;
-          self.longitude = longitude;
-        }
-      })
-      // setTimeout(() => {
-        console.log("search-78:"+self.latitude,self.longitude);
-        const reverse = await map.reverse(self.latitude, self.longitude);
-        self.currentLocation = reverse.current;
-        self.currentAddress = reverse.current.display;
-        self.nearbyLocations = reverse.nearby;
-        self.$apply();
-      // }, 300);
+      // 当前位置
+      const {latitude, longitude} = await wepy.getLocation({type: 'gcj02'});
+      this.latitude = latitude;
+      this.longitude = longitude;
       // 逆向解析
+      const reverse = await map.reverse(latitude, longitude);
+      this.currentLocation = reverse.current;
+      this.currentAddress = reverse.current.display;
+      this.nearbyLocations = reverse.nearby;
+      this.$apply();
       
     }
     methods = {
+      chooseLocation(){
+        this.$root.$navigate(`/pages/search`);
+      },
       /**
        * 确认选择
        */
       confirm(location) {
-        Event.emit(Event.ADDRESS_DETAIL_UPDATE, location);
-        wepy.navigateBack();
+        // Event.emit(Event.ADDRESS_DETAIL_UPDATE, location);
+        // wepy.navigateBack();
+        this.$root.$navigate(`/pages/locationChoose`);
       },
       /**
        * 重新定位

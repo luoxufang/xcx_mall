@@ -1,28 +1,59 @@
 <template>
-  <view class="container">
+  <view class="myContainer">
+    <view class="bbb_box">
 
+      <view class="bbb_list" wx:for="{{addressDetailList}}" wx:key="index" @tap="chooseCommunity({{item.type}})">
+        {{item.address}}
+      </view>
+
+    </view>
   </view>
 </template>
 <script>
 import wepy from 'wepy'
 export default class aaaaa extends wepy.page {
     config = {
-      navigationBarTitleText: '选择地址',
+      navigationBarTitleText: '附近可选的提货点',
     }
     data = {
       init: false,
       location: null,
       mode: 'create',
-      address: {}
+      address: {},
+      addressDetailList:[
+        {address:'深圳南山区阿里巴巴城市超市',type:'1'},
+        {address:'深圳南山区粤海街道阿里之门超市',type:'2'},
+        {address:'深圳南山区深南大道忘不了超市',type:'3'}
+      ]
     };
 
     methods = {
       location() {
         this.$navigate('search');
       },
+      chooseCommunity(type){
+        this.$root.$redirect(`/pages/index`);
+        wepy.setStorageSync('addressType', type);
+        // wepy.navigateBack(delta: 2);
+      }
     }
 }
 </script>
 <style lang="less">
 
+  .bbb_box{
+    width: 100%;
+  }
+  .bbb_list{
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 52rpx;
+    padding-left: 20rpx;
+    color: #666;
+    font-size: 32rpx;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1rpx solid #eeeeee;
+    padding: 24rpx 0;
+  }
 </style>

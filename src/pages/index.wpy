@@ -1,88 +1,24 @@
-<style lang="scss">
-  .aaa{
-    box-sizing: border-box;
-    width: 100%;
-    padding: 28rpx 20rpx;
-    font-size: 28rpx;
-    color: #fff;
-    text-align: left;
-    background-color: aquamarine;
-  }
-  .bbb_box{
-    padding: 20rpx 0;
-    width: 100%;
-    background-color: #eeeeee;
-  }
-  .bbb{
-    box-sizing: border-box;
-    width: 100%;
-    line-height: 48rpx;
-    margin-top: 12rpx;
-    padding-left: 20rpx;
-    padding-right: 12rpx;
-    text-align: left;
-    font-size: 32rpx;
-    color: #333;
-  }
-  .bbb_list{
-    box-sizing: border-box;
-    width: 100%;
-    line-height: 52rpx;
-    font-size: 26rpx;
-    padding-left: 20rpx;
-    color: #666;
-  }
-  .bottom_tab_view{
-    width: 100%;
-    background-color: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    .bottom_tab{
-      display: flex;
-      width: 100%;
-      height: 100rpx;
-      .is_tab{
-        flex: 1;
-        font-size: 0;
-        image{
-          margin-top: 10rpx;
-        }
-        .shop_view{
-          width:100rpx;
-          height: 100rpx;
-          font-size: 0;
-          background-color: red;
-          border: 16rpx solid #fff;
-          border-radius: 50%;
-          margin: 0 auto;
-          position: relative;
-          top: -34rpx;
-        }
-      }
-      .is_tab.class1{
-        text-align: center;
-      }
-      .is_tab.class2{
-        text-align: center;
-        flex: 2;
-      }
-      .is_tab.class3{
-        text-align: center;
-      }
-    }
-  }
-</style>
 <template>
   <view class="myContainer">
-    <view class="aaa" @tap="chooseLocation()">当前地址：{{currentAddress}}</view>
-    <view class="bbb_box">
-      <view class="bbb">附近可选的提货点</view>
-      <view class="bbb_list" wx:for="{{addressDetailList}}" wx:key="index">
-        {{item.address}}
+    <view id="beijiaer">
+      <view>贝家尔</view>
+      <view>一家有诚信的社区电商</view>
+    </view>
+    <!-- 用户选择的社区地址 -->
+    <view class="chooseAddress" @tap="chooseLocation()">
+      <image style="width: 100rpx; height: 100rpx;" mode="" src="{{changeImage}}" />
+      <view class="isName">
+        <view>50012575</view>
+        <view>{{MOREN_DATA}}</view>
+      </view>
+      <view class="fensi">
+        <view>粉丝数</view>
+        <view style="color:pink;font-size:24rpx;">{{number1}}</view>
+        <view>购买指数</view>
+        <view style="color:red;font-size:24rpx;">{{number2}}</view>
       </view>
     </view>
+
     <!-- 底部tab栏 -->
     <view class="bottom_tab_view">
       <view class="bottom_tab">
@@ -114,7 +50,7 @@
 
   export default class location extends wepy.page {
     config = {
-      navigationBarTitleText: '定位demo'
+      navigationBarTitleText: '首页'
     }
 
     data = {
@@ -124,7 +60,11 @@
         {address:'深圳市宝安区沙井塘尾阿里八八超市'},
         {address:'深圳市宝安区西乡阿里之门超市'},
         {address:'深圳市宝安区坪洲忘不了超市'}
-      ]
+      ],
+      changeImage:'../images/111.png',
+      MOREN_DATA:'深圳南山区阿里巴巴城市超市',
+      number1:'100',
+      number2:'2926',
     }
 
     methods = {
@@ -165,7 +105,25 @@
         }
       });
     }
-
+    async onShow(){
+      console.log('105:'+wx.getStorageSync('addressType'));
+      if(wx.getStorageSync('addressType') == '1'){
+        this.changeImage = '../images/111.png'
+        this.MOREN_DATA = '深圳南山区阿里巴巴城市超市'
+        this.number1 = '60'
+        this.number2 = '1226'
+      }else if(wx.getStorageSync('addressType') == '2'){
+        this.changeImage = '../images/fl_rq_woman.png'
+        this.MOREN_DATA = '深圳南山区粤海街道阿里之门超市'
+        this.number1 = '100'
+        this.number2 = '2926'
+      }else if(wx.getStorageSync('addressType') == '3'){
+        this.changeImage = '../images/gmi.png'
+        this.MOREN_DATA = '深圳南山区深南大道忘不了超市'
+        this.number1 = '160'
+        this.number2 = '3666'
+      }
+    }
     onLoad() {/** ---------------已经get------------- */
       let self = this
       /**
@@ -209,3 +167,80 @@
     }
   }
 </script>
+<style lang="scss">
+  .bottom_tab_view{
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    .bottom_tab{
+      display: flex;
+      width: 100%;
+      height: 100rpx;
+      .is_tab{
+        flex: 1;
+        font-size: 0;
+        image{
+          margin-top: 10rpx;
+        }
+        .shop_view{
+          width:100rpx;
+          height: 100rpx;
+          font-size: 0;
+          background-color: red;
+          border: 16rpx solid #fff;
+          border-radius: 50%;
+          margin: 0 auto;
+          position: relative;
+          top: -34rpx;
+        }
+      }
+      .is_tab.class1{
+        text-align: center;
+      }
+      .is_tab.class2{
+        text-align: center;
+        flex: 2;
+      }
+      .is_tab.class3{
+        text-align: center;
+      }
+    }
+  }
+  #beijiaer{
+    line-height: 100rpx;
+    display: flex;
+    background-color: red;
+    view:nth-child(1){
+      flex: 1;
+      text-align: right;
+      font-size: 36rpx;
+      color: #FFFFFF !important;
+    }
+    view:nth-child(2){
+      flex: 2;
+      padding-left: 20rpx;
+      color: #FFFFFF !important;
+    }
+  }
+  .chooseAddress{
+    padding: 30rpx 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    background-color: #fff;
+    .isName{
+      flex: 3;
+      padding-left: 20rpx;
+    }
+    .fensi{
+      flex: 1;
+      text-align: right;
+      font-size: 26rpx;
+      border-left: 1rpx solid #eeeeee;
+      color: #999;
+    }
+  }
+</style>

@@ -78,20 +78,21 @@ export default class map {
     //     }
     //   });
     // });
-
+    console.log(latitude)
     let self = this;
     // 实例化API核心类
     let demo = new QQMapWX({
         key: '4RDBZ-DOEK3-XXV3U-Y4GUX-DYJYZ-ZTFJ6' // 必填
     });
     // 调用接口
-    await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       demo.reverseGeocoder({
         location: {
           latitude: latitude,
           longitude: longitude
         },
         get_poi: 1,
+        coord_type:'5',
         poi_options: 'policy=2',
         success:({result}) => {
           const current = {};
