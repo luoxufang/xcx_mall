@@ -18,6 +18,17 @@
         <view style="color:red;font-size:24rpx;">{{number2}}</view>
       </view>
     </view>
+    <!-- 商品列表 -->
+    <view class="product_list">
+      <view class="product">
+        <view class="image_box"><image style="width: 100%; height: 400rpx;" mode="" src="../images/11.jpg" /></view>
+        <view class="title">百士菠萝啤 500ML/瓶 6瓶/组</view>
+        <view class="product_money">
+          <view class=""><span>￥8.9</span><span>￥24</span></view>
+          <view class="">已售 4460 份/ 限量10000份</view>
+        </view>
+      </view>
+    </view>
 
     <!-- 底部tab栏 -->
     <view class="bottom_tab_view">
@@ -106,7 +117,6 @@
       });
     }
     async onShow(){
-      console.log('105:'+wx.getStorageSync('addressType'));
       if(wx.getStorageSync('addressType') == '1'){
         this.changeImage = '../images/111.png'
         this.MOREN_DATA = '深圳南山区阿里巴巴城市超市'
@@ -136,21 +146,10 @@
             if (!res.authSetting['scope.userLocation']) {
                 console.log('111111')
             }else{
-              console.log('22222')
+              // console.log('22222')
             }
         }
       })
-      // wx.request({
-      //   url: 'http://192.168.0.114:8080/weixin-test/search.action', //仅为示例，并非真实的接口地址
-      //   data: {},
-      //   method:'POST',
-      //   header: {
-      //     'content-type': 'application/json' // 默认值  application/x-www-form-urlencoded
-      //   },
-      //   success: function(res) {
-      //     console.log(res.data)
-      //   }
-      // })
 
       wx.getLocation({
         type: 'gcj02',
@@ -241,6 +240,22 @@
       font-size: 26rpx;
       border-left: 1rpx solid #eeeeee;
       color: #999;
+    }
+  }
+  .product_list{
+    background-color: #fff;
+    .product{
+      border-top: 1rpx solid #eeeeee;
+      .image_box{
+        padding: 20rpx 20rpx 0 20rpx;
+      }
+      .title{
+        padding: 0 20rpx;
+      }
+      .product_money{
+        padding: 0 20rpx;
+        
+      }
     }
   }
 </style>

@@ -82,9 +82,38 @@
        * 确认选择
        */
       confirm(location) {
+        let self = this;
         // Event.emit(Event.ADDRESS_DETAIL_UPDATE, location);
         // wepy.navigateBack();
-        this.$root.$navigate(`/pages/locationChoose`);
+        // wx.request({
+        //   url: 'http://192.168.0.114:8080/weixin-test/search.action', //仅为示例，并非真实的接口地址
+        //   data: {
+        //     address:location.address
+        //   },
+        //   method:'POST',
+        //   header: {
+        //     'content-type': 'application/json' // 默认值  application/x-www-form-urlencoded
+        //   },
+        //   success: function(res) {
+        //     console.log(res.data)
+        //     wepy.showLoading({
+        //       title: '加载中...'
+        //     })
+        //     setTimeout(() => {
+        //       wepy.hideLoading();
+        //       wepy.navigateTo({url:`/pages/locationChoose`});
+        //       // this.$root.$navigate(`/pages/locationChoose`);
+        //       self.$apply();
+        //     }, 1000);
+        //   }
+        // })
+        wepy.showLoading({
+          title: '加载中...'
+        })
+        setTimeout(() => {
+          wepy.hideLoading();
+          wepy.navigateTo({url:`/pages/locationChoose`});
+        }, 1000);
       },
       /**
        * 重新定位

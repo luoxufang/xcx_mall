@@ -78,7 +78,6 @@ export default class map {
     //     }
     //   });
     // });
-    console.log(latitude)
     let self = this;
     // 实例化API核心类
     let demo = new QQMapWX({

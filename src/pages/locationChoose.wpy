@@ -32,9 +32,16 @@ export default class aaaaa extends wepy.page {
         this.$navigate('search');
       },
       chooseCommunity(type){
-        this.$root.$redirect(`/pages/index`);
-        wepy.setStorageSync('addressType', type);
-        // wepy.navigateBack(delta: 2);
+        wepy.showToast({
+          title: '选取成功',
+          icon: 'success',
+          duration: 1000
+        })
+        setTimeout(() => {
+          this.$root.$redirect(`/pages/index`);
+          wepy.setStorageSync('addressType', type);
+          // wepy.navigateBack(delta: 2);
+        }, 1000);
       }
     }
 }
