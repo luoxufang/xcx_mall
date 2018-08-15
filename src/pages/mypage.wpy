@@ -1,15 +1,50 @@
 <template>
   <view class="myContainer">
-    <!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
-    <view class="userView" style="text-align:center;">
-      <view class="" style="width:120rpx;height:120rpx;border-radius:50%;margin:0 auto;"><open-data type="userAvatarUrl"></open-data></view>
-      <open-data type="userNickName" style="font-size:30rpx;color:#666;"></open-data>
+    <!-- 用户选择的社区地址 -->
+    <view class="chooseAddress">
+      <view class="" style="width:120rpx;height:120rpx;border-radius:50%;overflow: hidden;">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="isName">
+        <view><open-data type="userNickName" style="font-size:30rpx;color:#666;"></open-data></view>
+        <view>18879554085</view>
+      </view>
+      <view class="code_box">
+        <image class="share_code" style="width: 48rpx; height: 48rpx;" mode="" src="../images/code.png" />
+      </view>
     </view>
-    <child @childFn.user="parentFn"></child>
+    <!-- 订单管理 -->
+    <view class="order_list">
+       <view class="list">
+         <image class="image1" style="width: 46rpx; height: 46rpx;" mode="" src="../images/order-active.png" />
+         <view class="text_notice">全部订单</view>
+         <image class="image2" style="width: 14rpx; height: 24rpx;" mode="" src="../images/right.png" />
+       </view>
+       <view class="list">
+         <image class="image1" style="width: 39rpx; height: 45rpx;" mode="" src="../images/order_1.png" />
+         <view class="text_notice">未付款</view>
+         <image class="image2" style="width: 14rpx; height: 24rpx;" mode="" src="../images/right.png" />
+       </view>
+       <view class="list">
+         <image class="image1" style="width: 42rpx; height: 42rpx;" mode="" src="../images/order_3.png" />
+         <view class="text_notice">待提货</view>
+         <image class="image2" style="width: 14rpx; height: 24rpx;" mode="" src="../images/right.png" />
+       </view>
+       <view class="list">
+         <image class="image1" style="width: 44rpx; height: 44rpx;" mode="" src="../images/order_4.png" />
+         <view class="text_notice">已提货</view>
+         <image class="image2" style="width: 14rpx; height: 24rpx;" mode="" src="../images/right.png" />
+       </view>
+    </view>
+    <!-- <child @childFn.user="parentFn"></child> -->
+
+    <!-- 去购买按钮 -->
+    <button class="goToShop" @tap="goToShop()" >去购物</button>
     <!--订单栏-->
     <!-- <block wx:if="{{item.type == 'ORDER_BAR'}}">
       <OrderBar :param.sync="item" />
     </block> -->
+
     <!-- 底部tab栏 -->
     <view class="bottom_tab_view" @tap="gotoHome()">
       <view class="bottom_tab">
@@ -38,28 +73,84 @@
     import Child from '../components/test_child'
 
     export default class Index extends wepy.page {
-        config = {
-          navigationBarTitleText: '个人中心'
+      config = {
+        navigationBarTitleText: '个人中心'
+      }
+      components = {
+          child: Child
+      }
+      data = {
+        changeImage:'../images/111.png',
+        MOREN_DATA:'深圳南山区阿里巴巴城市超市'
+      }
+      methods = {
+        parentFn (num, evt) {
+            console.log('parent received emit event, number is: ' + num)
+            console.log(evt)
+        },
+        goToShop(){
+          this.$root.$redirect(`/pages/index`);
+        },
+        gotoHome(){
+          this.$root.$redirect(`/pages/index`);
+        },
+        gotoShopCart(){
+          this.$root.$redirect(`/pages/shopCart`);
         }
-        components = {
-            child: Child
-        }
-
-        methods = {
-          parentFn (num, evt) {
-              console.log('parent received emit event, number is: ' + num)
-              console.log(evt)
-          },
-          gotoHome(){
-            this.$root.$redirect(`/pages/index`);
-          },
-          gotoShopCart(){
-            this.$root.$redirect(`/pages/shopCart`);
-          }
-        }
+      }
     }
 </script>
 <style lang="scss">
+.myContainer{
+  width: 100%;
+}
+.chooseAddress{
+  padding: 30rpx 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eeeeee;
+  .isName{
+    flex: 3;
+    padding-left: 20rpx;
+  }
+  .code_box{
+    display: flex;
+    text-align: center;
+    justify-content:center;
+    width: 140rpx;
+  }
+}
+.order_list{
+  margin-top: 20rpx;
+  background-color: #fff;
+  .list{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 0 40rpx;
+    line-height: 100rpx;
+    border-bottom: 1rpx solid #eeeeee;
+    .text_notice{
+      flex: 1;
+      padding-left: 30rpx;
+    }
+  }
+  .list:last-child{
+    border: 0;
+  }
+}
+.goToShop{
+  width: 702rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  background-color: #fff;
+  border: 1rpx solid #E90013;
+  color: #E90013;
+  margin: 0 auto;
+  margin-top: 60rpx;
+}
 .bottom_tab_view{
   width: 100%;
   background-color: #fff;

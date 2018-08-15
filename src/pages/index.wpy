@@ -20,14 +20,32 @@
     </view>
     <!-- 商品列表 -->
     <view class="product_list">
+
       <view class="product">
         <view class="image_box"><image style="width: 100%; height: 400rpx;" mode="" src="../images/11.jpg" /></view>
-        <view class="title">百士菠萝啤 500ML/瓶 6瓶/组</view>
+        <view class="title">青皮甜石榴 约1斤 正负0.2斤</view>
         <view class="product_money">
-          <view class=""><span>￥8.9</span><span>￥24</span></view>
-          <view class="">已售 4460 份/ 限量10000份</view>
+          <view class="money"><span style="color:red;">￥ 5</span><span style="color:#666;margin-left:20rpx;font-size:24rpx;">￥ 14.8</span></view>
+          <view class="shop">已售 <span style="color:red;">4460</span> 份/ 限量<span style="color:#666;">10000</span>份</view>
         </view>
+        <view class="product_choose">
+          <button class="cancel" form-type="submit" bindtap="lianxi_kefu">立即支付</button>
+          <button class="cancel" form-type="submit" open-type='contact' bindtap="lianxi_kefu">加入购物车</button> 
+        </view> 
       </view>
+      <view class="product">
+        <view class="image_box"><image style="width: 100%; height: 400rpx;" mode="" src="../images/22.jpg" /></view>
+        <view class="title">金健500g米饺世家玉米猪肉米饺 约30个</view>
+        <view class="product_money">
+          <view class="money"><span style="color:red;">￥ 8.8</span><span style="color:#666;margin-left:20rpx;font-size:24rpx;">￥ 12.8</span></view>
+          <view class="shop">已售 <span style="color:red;">1888</span> 份/ 限量<span style="color:#666;">10000</span>份</view>
+        </view>
+        <view class="product_choose">
+          <button class="cancel" form-type="submit" bindtap="lianxi_kefu">立即支付</button>
+          <button class="cancel" form-type="submit" open-type='contact' bindtap="lianxi_kefu">加入购物车</button> 
+        </view> 
+      </view>
+
     </view>
 
     <!-- 底部tab栏 -->
@@ -167,6 +185,9 @@
   }
 </script>
 <style lang="scss">
+  .myContainer{
+    padding-bottom: 120rpx;
+  }
   .bottom_tab_view{
     width: 100%;
     background-color: #fff;
@@ -251,11 +272,65 @@
       }
       .title{
         padding: 0 20rpx;
+        font-size: 32rpx;
+        color: #333;
+        margin-bottom: 10rpx;
       }
       .product_money{
         padding: 0 20rpx;
-        
+        display: flex;
+        .money{
+          flex: 1;
+        }
+        .shop{
+          flex: 1;
+          color: #999;
+        }
       }
     }
   }
+.product_choose:after{
+    clear:both;
+    content:'.';
+    display:block;
+    width: 0;
+    height: 0;
+    visibility:hidden;
+} 
+.product_choose{
+  padding: 20rpx 24rpx;
+  padding-bottom: 26rpx;
+  .cancel{
+    width: 174rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 30rpx;
+    font-size: 26rpx;
+    color: red;
+    border: 2rpx solid red;
+    display: inline-block;
+    float: right;
+    margin-right: 28rpx;
+    background-color: #FFF;
+    padding: 0 10rpx;
+  }
+  .go_fuqian{
+    width: 162rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    font-size: 26rpx;
+    /* color: #ff3939;
+    border: 2rpx solid #ff3939; */
+    display: inline-block;
+    float: right;
+    background-color: #FFF;
+    padding: 0 10rpx;
+  }
+}
+.product_choose .cancel::after,.product_choose .go_fuqian::after{
+  border: 0;
+}
 </style>
