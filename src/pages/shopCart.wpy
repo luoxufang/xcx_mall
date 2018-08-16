@@ -1,5 +1,5 @@
 <template>
-  <view class="myContainer">
+<view class="myContainer">
   <Loading :init.sync="init"/>
   <view class="container" wx:if="{{init}}">
     <view class="cart-header-container" wx:if="{{cart.carts.length > 0}}">
@@ -64,7 +64,8 @@
 
     </view>
   </view>
-  </view>
+  
+</view>
 </template>
 
 <script>
@@ -170,7 +171,9 @@
     width: 750rpx;
     overflow-x: hidden;
   }
-
+  .myContainer{
+    height: 100%;
+  }
   /*占位*/
   .cart-empty-tips{
     position: fixed;

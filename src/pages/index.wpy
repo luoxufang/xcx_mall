@@ -48,26 +48,6 @@
 
     </view>
 
-    <!-- 底部tab栏 -->
-    <view class="bottom_tab_view">
-      <view class="bottom_tab">
-        <view class="is_tab class1">
-          <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/home-active.png" />
-          <view style="color: #0997DC;">首页</view>
-        </view>
-        <view class="is_tab class2" @tap="gotoShopCart()">
-          <view class="shop_view">
-            <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/shop.png" />
-            <view style="font-size:24rpx;color:#fff;">购物车</view>
-          </view>
-        </view>
-        <view class="is_tab class3" @tap="gotoMypage()">
-          <image style="width: 48rpx; height: 48rpx;" mode="" src="../images/user.png" />
-          <view>我的</view>
-        </view>
-      </view>
-    </view>
-
   </view>
 </template>
 
@@ -186,48 +166,7 @@
 </script>
 <style lang="scss">
   .myContainer{
-    padding-bottom: 120rpx;
-  }
-  .bottom_tab_view{
-    width: 100%;
-    background-color: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    .bottom_tab{
-      display: flex;
-      width: 100%;
-      height: 100rpx;
-      .is_tab{
-        flex: 1;
-        font-size: 0;
-        image{
-          margin-top: 10rpx;
-        }
-        .shop_view{
-          width:100rpx;
-          height: 100rpx;
-          font-size: 0;
-          background-color: red;
-          border: 16rpx solid #fff;
-          border-radius: 50%;
-          margin: 0 auto;
-          position: relative;
-          top: -34rpx;
-        }
-      }
-      .is_tab.class1{
-        text-align: center;
-      }
-      .is_tab.class2{
-        text-align: center;
-        flex: 2;
-      }
-      .is_tab.class3{
-        text-align: center;
-      }
-    }
+    
   }
   #beijiaer{
     line-height: 100rpx;

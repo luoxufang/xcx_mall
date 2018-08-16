@@ -35,32 +35,32 @@ export default class extends wepy.app {
       'backgroundColor': '#F5F5F5',
       'navigationBarBackgroundColor': '#0997DC'
     },
-    // 'tabBar': {
-    //   'color': '#666666',
-    //   'selectedColor': '#0997DC',
-    //   'borderStyle': 'white',
-    //   'backgroundColor': '#FAFAFA',
-    //   'list': [
-    //     {
-    //       'iconPath': 'images/home.png',
-    //       'selectedIconPath': 'images/home-active.png',
-    //       'pagePath': 'pages/location',
-    //       'text': '首页'
-    //     },
-    //     {
-    //       'iconPath': 'images/home.png',
-    //       'selectedIconPath': 'images/home-active.png',
-    //       'pagePath': 'pages/index',
-    //       'text': '购物车'
-    //     },
-    //     {
-    //       'iconPath': 'images/order.png',
-    //       'selectedIconPath': 'images/order-active.png',
-    //       'pagePath': 'pages/test_change_compont',
-    //       'text': '我的'
-    //     }
-    //   ]
-    // }
+    'tabBar': {
+      'color': '#666666',
+      'selectedColor': '#0997DC',
+      'borderStyle': 'white',
+      'backgroundColor': '#FAFAFA',
+      'list': [
+        {
+          'iconPath': 'images/home.png',
+          'selectedIconPath': 'images/home-active.png',
+          'pagePath': 'pages/index',
+          'text': '首页'
+        },
+        {
+          'iconPath': 'images/cart.png',
+          'selectedIconPath': 'images/cart-active.png',
+          'pagePath': 'pages/shopCart',
+          'text': '购物车'
+        },
+        {
+          'iconPath': 'images/order.png',
+          'selectedIconPath': 'images/order-active.png',
+          'pagePath': 'pages/mypage',
+          'text': '我的'
+        }
+      ]
+    }
   }
 
   globalData = {

@@ -38,7 +38,7 @@ export default class aaaaa extends wepy.page {
           duration: 1000
         })
         setTimeout(() => {
-          this.$root.$redirect(`/pages/index`);
+          this.$root.$switch(`/pages/index`);
           wepy.setStorageSync('addressType', type);
           // wepy.navigateBack(delta: 2);
         }, 1000);
