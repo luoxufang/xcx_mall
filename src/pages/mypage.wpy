@@ -69,7 +69,7 @@
             console.log(evt)
         },
         goToShop(){
-          this.$root.$redirect(`/pages/index`);
+          this.$root.$switch(`/pages/index`);
         },
         gotoHome(){
           this.$root.$redirect(`/pages/index`);
