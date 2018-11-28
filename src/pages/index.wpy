@@ -250,7 +250,7 @@
     border: 2rpx solid red;
     display: inline-block;
     float: right;
-    margin-right: 28rpx;
+    margin-left: 28rpx;
     background-color: #FFF;
     padding: 0 10rpx;
   }

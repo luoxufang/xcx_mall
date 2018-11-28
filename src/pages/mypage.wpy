@@ -7,7 +7,7 @@
       </view>
       <view class="isName">
         <view><open-data type="userNickName" style="font-size:30rpx;color:#666;"></open-data></view>
-        <view>18879554085</view>
+        <view>18878554085</view>
       </view>
       <view class="code_box">
         <image class="share_code" style="width: 48rpx; height: 48rpx;" mode="" src="../images/code.png" />
